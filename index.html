@@ -3,16 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
     <title>Weather Dashboard</title>
     <!-- ************** Add axios cdn ****************** -->
+    <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <h1>Search Your City</h1>
-    <form id="searchForm">
-      <input type="text" placeholder="Weather Search" name="query" />
-      <button>Search</button>
-    </form>
+    <div id="jumbo" class="jumbotron jumbotron-fluid text-white">
+      <div class="container">
+        <h1>Search Your City</h1>
+        <form id="searchForm">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter a City"
+              name="query"
+            />
+            <div class="input-group-append">
+              <button class="btn btn-success">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
     <!-- ************** Link js file ************* -->
     <script src="script.js"></script>
   </body>
