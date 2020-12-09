@@ -9,6 +9,7 @@ form.addEventListener("submit", async function (e) {
   const res = await axios.get(
     `http://api.openweathermap.org/data/2.5/weather?q=${userSearch}&units=imperial&appid=b17d60e77dffd2e53cb818dad9614dfb`
   );
+  form.elements.query.value = "";
 
   //Create constants to store the JSON data
   const weatherData = res.data;
@@ -26,5 +27,4 @@ form.addEventListener("submit", async function (e) {
   const img = document.createElement("IMG");
   img.src = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
   document.body.append(img);
-  // weatherData.weather[0].icon;
 });
