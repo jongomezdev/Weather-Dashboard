@@ -1,5 +1,6 @@
 // Grab DOM Elements
 let form = document.querySelector("#searchForm");
+let queryDetails = document.querySelector("#queryDetails");
 // Declare Variables
 let searchHistory = [];
 
@@ -9,9 +10,15 @@ let currentWeather = async (userSearch) => {
     `http://api.openweathermap.org/data/2.5/weather?q=${userSearch}&units=imperial&appid=b17d60e77dffd2e53cb818dad9614dfb`
   );
   let weatherData = res.data;
-  // console.log(weatherData);
-  let weatherIcon = weatherData.weather[0].icon;
-  let iconURL = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+  console.log(weatherData);
+  // queryDetails.setAttribute("display", "block");
+  // let weatherIcon = weatherData.weather[0].icon;
+
+  // let img = document.createElement("IMG");
+  // img.src = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+  // queryDetails.append(
+  //   `${weatherData.name} ${img} Temperature: ${weatherData.main.temp} Humidity: ${weatherData.main.humidity} Wind Speed: ${weatherData.wind.speed}`
+  // );
 };
 
 //Add Event Listener on the input form
