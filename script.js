@@ -5,6 +5,7 @@ const cityname = document.querySelector("#cityname");
 const temp = document.querySelector("#temp");
 const humidity = document.querySelector("#humidity");
 const wind = document.querySelector("#wind");
+const uvindex = document.querySelector("#uvindex");
 
 // Declare Variables
 const searchHistory = [];
@@ -37,6 +38,8 @@ const currentWeather = async (userSearch) => {
     )
     .then(function (uviResponse) {
       console.log(uviResponse);
+      let uvIndex = uviResponse.data.value;
+      uvindex.append(`UV Index: ${uvIndex}`);
     });
 };
 
