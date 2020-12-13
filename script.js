@@ -37,9 +37,22 @@ const currentWeather = async (userSearch) => {
       `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=b17d60e77dffd2e53cb818dad9614dfb`
     )
     .then(function (uviResponse) {
-      console.log(uviResponse);
+      // console.log(uviResponse);
       let uvIndex = uviResponse.data.value;
+      // console.log(uvIndex);
       uvindex.append(`UV Index: ${uvIndex}`);
+      //Creat UV Index colors with an if else statement
+      if (uvIndex < 3) {
+        uvindex.classList.add("uviGreen");
+      } else if (uvIndex < 6) {
+        uvindex.classList.add("uviYellow");
+      } else if (uvIndex < 8) {
+        uvindex.classList.add("uviOrange");
+      } else if (uvIndex < 11) {
+        uvindex.classList.add("uviRed");
+      } else {
+        uvindex.classList.add("ultraviolet");
+      }
     });
 };
 

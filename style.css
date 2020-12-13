@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
 body {
-  background-color: #000000;
+  background-color: #fff;
   font-family: "Lato", sans-serif;
 }
 
@@ -10,7 +10,42 @@ body {
   background-position: center;
 }
 
-#uvindex {
+.uviGreen {
   background-color: #3ea72d;
   display: inline;
+  border-radius: 4px;
+  padding: 0 4px 0 4px;
+  color: #fff;
+}
+
+.uviYellow {
+  background-color: #fff300;
+  display: inline;
+  border-radius: 4px;
+  padding: 0 4px 0 4px;
+  color: #fff;
+}
+
+.uviOrange {
+  background-color: #f18b00;
+  display: inline;
+  border-radius: 4px;
+  padding: 0 4px 0 4px;
+  color: #fff;
+}
+
+.uviRed {
+  background-color: #e53210;
+  display: inline;
+  border-radius: 4px;
+  padding: 0 4px 0 4px;
+  color: #fff;
+}
+
+.ultraviolet {
+  background-color: #b567a4;
+  display: inline;
+  border-radius: 4px;
+  padding: 0 4px 0 4px;
+  color: #fff;
 }
