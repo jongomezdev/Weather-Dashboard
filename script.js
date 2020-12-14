@@ -41,6 +41,7 @@ const currentWeather = async (userSearch) => {
       let uvIndex = uviResponse.data.value;
       // console.log(uvIndex);
       uvindex.append(`UV Index: ${uvIndex}`);
+      fiveDayForecast(lat, lon);
       //Creat UV Index colors with an if else statement
       if (uvIndex < 3) {
         uvindex.classList.add("uviGreen");
@@ -55,6 +56,16 @@ const currentWeather = async (userSearch) => {
       }
     });
 };
+
+function fiveDayForecast(lat, lon) {
+  axios
+    .get(
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=current,minutely,hourly,alerts&appid=b17d60e77dffd2e53cb818dad9614dfb`
+    )
+    .then(function (fiveDayResponse) {
+      console.log(fiveDayResponse);
+    });
+}
 
 //Add Event Listener on the input form
 form.addEventListener("submit", function (e) {
