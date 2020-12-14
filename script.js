@@ -31,6 +31,7 @@ const currentWeather = async (userSearch) => {
   //UV Index
   const lat = weatherData.coord.lat;
   const lon = weatherData.coord.lon;
+  // console.log(lat, lon);
 
   axios
     .get(
@@ -63,7 +64,11 @@ function fiveDayForecast(lat, lon) {
       `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=current,minutely,hourly,alerts&appid=b17d60e77dffd2e53cb818dad9614dfb`
     )
     .then(function (fiveDayResponse) {
-      console.log(fiveDayResponse);
+      // console.log(fiveDayResponse.data.daily[1].dt);
+      let forecastDate = luxon.DateTime.fromSeconds(
+        fiveDayResponse.data.daily[1].dt
+      ).toLocaleString({ year: "numeric", month: "2-digit", day: "2-digit" });
+      console.log(forecastDate);
     });
 }
 
