@@ -65,10 +65,19 @@ function fiveDayForecast(lat, lon) {
     )
     .then(function (fiveDayResponse) {
       // console.log(fiveDayResponse.data.daily[1].dt);
-      let forecastDate = luxon.DateTime.fromSeconds(
-        fiveDayResponse.data.daily[1].dt
-      ).toLocaleString({ year: "numeric", month: "2-digit", day: "2-digit" });
-      console.log(forecastDate);
+
+      for (let i = 1; i < 6; i++) {
+        let forecastInfo = {
+          date: fiveDayResponse.data.daily[i].dt,
+          icon: fiveDayResponse.data.daily[i].weather[0].icon,
+          temp: fiveDayResponse.data.daily[i].temp.day,
+          humidity: fiveDayResponse.data.daily[i].humidity,
+        };
+        let forecastDate = luxon.DateTime.fromSeconds(
+          forecastInfo.date
+        ).toLocaleString({ year: "numeric", month: "2-digit", day: "2-digit" });
+        console.log(forecastDate);
+      }
     });
 }
 
@@ -82,3 +91,6 @@ form.addEventListener("submit", function (e) {
   queryContent.hidden = false;
   form.elements.query.value = "";
 });
+
+// Line 79
+// fiveDayResponse.data.daily[i].dt
