@@ -19,9 +19,10 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
+    <!-- Page Title and search input here -->
     <div id="jumbo" class="jumbotron jumbotron-fluid text-white">
       <div class="container">
-        <h1>Weather Search</h1>
+        <h1>Weather Dashboard</h1>
         <form id="searchForm">
           <div class="input-group">
             <input
@@ -51,7 +52,17 @@
           <p id="uvindex" class=""></p>
         </div>
       </div>
+      <!-- Add 5 Day Forecast Here -->
+      <div class="row mb-2">
+        <div class="col-12">
+          <h3 class="mb-0">5 Day Forecast</h3>
+        </div>
+      </div>
+      <div id="fiveDay" class="row">
+        <!-- API call for 5 day forecast Here -->
+      </div>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/luxon@1.25.0/build/global/luxon.min.js"></script>
     <script src="script.js"></script>

@@ -1,8 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
 body {
-  background-color: #fff;
+  background-image: linear-gradient(#2c003e, #bedcfa);
   font-family: "Lato", sans-serif;
+}
+
+h1 {
+  text-align: center;
 }
 
 #jumbo {
@@ -48,4 +52,8 @@ body {
   border-radius: 4px;
   padding: 0 4px 0 4px;
   color: #fff;
+}
+
+#queryContent {
+  background-color: #fff;
 }
