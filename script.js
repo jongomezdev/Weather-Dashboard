@@ -9,7 +9,11 @@ const uvindex = document.querySelector("#uvindex");
 
 // Declare Variables
 const searchHistory = [];
-const today = luxon.DateTime.local().toLocaleString();
+const today = luxon.DateTime.local().toLocaleString({
+  weekday: "short",
+  month: "short",
+  day: "2-digit",
+});
 
 queryContent.hidden = true;
 // Create function to call api
@@ -28,11 +32,10 @@ const currentWeather = async (userSearch) => {
   temp.append(`Temperature: ${weatherData.main.temp} °F`);
   humidity.append(`Humidity: ${weatherData.main.humidity} %`);
   wind.append(`Wind Speed: ${weatherData.wind.speed} MPH`);
-  //UV Index
   const lat = weatherData.coord.lat;
   const lon = weatherData.coord.lon;
   // console.log(lat, lon);
-
+  //UV Index api call
   axios
     .get(
       `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=b17d60e77dffd2e53cb818dad9614dfb`
@@ -43,7 +46,7 @@ const currentWeather = async (userSearch) => {
       // console.log(uvIndex);
       uvindex.append(`UV Index: ${uvIndex}`);
       fiveDayForecast(lat, lon);
-      //Creat UV Index colors with an if else statement
+      //Create UV Index colors
       if (uvIndex < 3) {
         uvindex.classList.add("uviGreen");
       } else if (uvIndex < 6) {
@@ -58,6 +61,7 @@ const currentWeather = async (userSearch) => {
     });
 };
 
+// 5 day forecast
 function fiveDayForecast(lat, lon) {
   axios
     .get(
@@ -73,10 +77,25 @@ function fiveDayForecast(lat, lon) {
           temp: fiveDayResponse.data.daily[i].temp.day,
           humidity: fiveDayResponse.data.daily[i].humidity,
         };
+        // console.log(forecastInfo.icon);
         let forecastDate = luxon.DateTime.fromSeconds(
           forecastInfo.date
-        ).toLocaleString({ year: "numeric", month: "2-digit", day: "2-digit" });
-        console.log(forecastDate);
+        ).toLocaleString({ weekday: "short", month: "short", day: "2-digit" });
+        let forecastIcon = `<img src="https://openweathermap.org/img/w/${forecastInfo.icon}.png" />`;
+        // console.log(forecastDate);
+        forecastCard = $(`
+          <div class="p-3">
+            <div class="card bg-transparent text-light">
+              <div class="card-body">
+                <p>${forecastDate}</p>
+                <p>${forecastIcon}</p> 
+                <p>Temperature: ${forecastInfo.temp} °F</p>
+                <p>Humidity: ${forecastInfo.humidity} %</p>
+              </div>
+            </div>
+          </div>
+        `);
+        $("#fiveDay").append(forecastCard);
       }
     });
 }
