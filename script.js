@@ -1,11 +1,4 @@
 const form = document.querySelector("#searchForm");
-const queryDetails = document.querySelector("#queryDetails");
-const queryContent = document.querySelector("#queryContent");
-const cityname = document.querySelector("#cityname");
-const temp = document.querySelector("#temp");
-const humidity = document.querySelector("#humidity");
-const wind = document.querySelector("#wind");
-const uvindex = document.querySelector("#uvindex");
 
 // Declare Variables
 const searchHistory = [];
@@ -15,37 +8,41 @@ const today = luxon.DateTime.local().toLocaleString({
   day: "2-digit",
 });
 
-// queryContent.hidden = true;
-// Create function to call api
+// City Search Api Call
 const currentWeather = async (userSearch) => {
   const res = await axios.get(
     `http://api.openweathermap.org/data/2.5/weather?q=${userSearch}&units=imperial&appid=b17d60e77dffd2e53cb818dad9614dfb`
   );
   $("#queryContent").css("display", "block");
+  $("#queryDetails").empty();
   const weatherData = res.data;
-  // console.log(weatherData);
   const weatherIcon = weatherData.weather[0].icon;
-  const img = document.createElement("IMG");
-  img.src = `http://openweathermap.org/img/w/${weatherIcon}.png`;
+  const iconURL = `http://openweathermap.org/img/w/${weatherIcon}.png`;
 
-  cityname.append(`${weatherData.name}  ${today}`);
-  cityname.append(img);
-  temp.append(`Temperature: ${weatherData.main.temp} °F`);
-  humidity.append(`Humidity: ${weatherData.main.humidity} %`);
-  wind.append(`Wind Speed: ${weatherData.wind.speed} MPH`);
+  let cityEl = $(`
+    <h2 id="cityName">
+    ${weatherData.name}-${today} <img src="${iconURL}"/>
+    </h2>
+    <p>Temperature: ${weatherData.main.temp} °F</p>
+    <p>Humidity: ${weatherData.main.temp} %</p>
+    <p>Wind Speed: ${weatherData.main.temp} MPH</p>
+  `);
+  $("#queryDetails").append(cityEl);
   const lat = weatherData.coord.lat;
   const lon = weatherData.coord.lon;
-  // console.log(lat, lon);
   //UV Index api call
   axios
     .get(
       `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=b17d60e77dffd2e53cb818dad9614dfb`
     )
     .then(function (uviResponse) {
-      // console.log(uviResponse);
       let uvIndex = uviResponse.data.value;
-      // console.log(uvIndex);
-      uvindex.append(`UV Index: ${uvIndex}`);
+      let uvEl = $(`
+        <p>UV Index:
+          <span id="uvindex">${uvIndex}</span>
+        </p>
+      `);
+      $("#queryDetails").append(uvEl);
       fiveDayForecast(lat, lon);
       //Create UV Index colors
       if (uvIndex < 3) {
@@ -69,8 +66,7 @@ function fiveDayForecast(lat, lon) {
       `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=current,minutely,hourly,alerts&appid=b17d60e77dffd2e53cb818dad9614dfb`
     )
     .then(function (fiveDayResponse) {
-      // console.log(fiveDayResponse.data.daily[1].dt);
-
+      $("#fiveDay").empty();
       for (let i = 1; i < 6; i++) {
         let forecastInfo = {
           date: fiveDayResponse.data.daily[i].dt,
@@ -78,12 +74,10 @@ function fiveDayForecast(lat, lon) {
           temp: fiveDayResponse.data.daily[i].temp.day,
           humidity: fiveDayResponse.data.daily[i].humidity,
         };
-        // console.log(forecastInfo.icon);
         let forecastDate = luxon.DateTime.fromSeconds(
           forecastInfo.date
         ).toLocaleString({ weekday: "short", month: "short", day: "2-digit" });
         let forecastIcon = `<img src="https://openweathermap.org/img/w/${forecastInfo.icon}.png" />`;
-        // console.log(forecastDate);
         forecastCard = $(`
           <div class="p-3">
             <div class="card bg-transparent text-light">
@@ -106,7 +100,6 @@ form.addEventListener("submit", function (e) {
   e.preventDefault();
 
   let userSearch = form.elements.query.value.trim();
-  // console.log(userSearch);
   currentWeather(userSearch);
   if (!searchHistory.includes(userSearch)) {
     searchHistory.push(userSearch);
@@ -117,8 +110,6 @@ form.addEventListener("submit", function (e) {
   }
 
   localStorage.setItem("userSearch", JSON.stringify(searchHistory));
-  // console.log(searchHistory);
-  // queryContent.hidden = false;
   form.elements.query.value = "";
 });
 
