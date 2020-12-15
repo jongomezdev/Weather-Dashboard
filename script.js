@@ -15,12 +15,13 @@ const today = luxon.DateTime.local().toLocaleString({
   day: "2-digit",
 });
 
-queryContent.hidden = true;
+// queryContent.hidden = true;
 // Create function to call api
 const currentWeather = async (userSearch) => {
   const res = await axios.get(
     `http://api.openweathermap.org/data/2.5/weather?q=${userSearch}&units=imperial&appid=b17d60e77dffd2e53cb818dad9614dfb`
   );
+  $("#queryContent").css("display", "block");
   const weatherData = res.data;
   // console.log(weatherData);
   const weatherIcon = weatherData.weather[0].icon;
@@ -117,12 +118,24 @@ form.addEventListener("submit", function (e) {
 
   localStorage.setItem("userSearch", JSON.stringify(searchHistory));
   // console.log(searchHistory);
-  queryContent.hidden = false;
+  // queryContent.hidden = false;
   form.elements.query.value = "";
 });
 
+// Add event listener to the LI
 $(document).on("click", ".list-group-item", function () {
   let cityLI = $(this).text();
   currentWeather(cityLI);
   console.log(cityLI);
+});
+
+// Persist the last userSearch on reload
+$(document).ready(function () {
+  let searchArr = JSON.parse(localStorage.getItem("userSearch"));
+
+  if (searchArr !== null) {
+    let lastSearchEl = searchArr.length - 1;
+    let lastCityEl = searchArr[lastSearchEl];
+    currentWeather(lastCityEl);
+  }
 });
