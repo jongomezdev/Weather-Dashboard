@@ -47,7 +47,7 @@
         id="queryContent"
       >
         <div class="col-md-6 px-0" id="queryDetails">
-          <!-- Add Query Content here -->
+          <!-- Append Query Content here -->
           <h2 id="cityname"></h2>
           <p id="temp"></p>
           <p id="humidity"></p>
@@ -55,19 +55,20 @@
           <p id="uvindex" class=""></p>
         </div>
       </div>
-      <div class="row"></div>
+      <div class="row">
+        <div class="col-12">
+          <ul class="list-group" id="searchHistory">
+            <!-- append search history here -->
+          </ul>
+        </div>
+      </div>
       <!-- Add 5 Day Forecast Here -->
       <div class="row">
-        <div class="card mx-3 my-4 w-100 bg-transparent text-light">
-          <div class="card-body">
-            <h3 class="mb-0">5 Day Forecast</h3>
-          </div>
-        </div>
         <div
           id="fiveDay"
           class="col-12 d-flex flex-row flex-wrap justify-content-start"
         >
-          <!-- API call for 5 day forecast Here -->
+          <!-- 5 Day Cards Here -->
         </div>
       </div>
     </div>

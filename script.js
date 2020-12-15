@@ -107,6 +107,13 @@ form.addEventListener("submit", function (e) {
   let userSearch = form.elements.query.value.trim();
   // console.log(userSearch);
   currentWeather(userSearch);
+  if (!searchHistory.includes(userSearch)) {
+    searchHistory.push(userSearch);
+    let cityEl = $(`
+      <li>${userSearch}</li>
+    `);
+    $("#searchHistory").append(cityEl);
+  }
   queryContent.hidden = false;
   form.elements.query.value = "";
 });
