@@ -110,13 +110,13 @@ form.addEventListener("submit", function (e) {
   if (!searchHistory.includes(userSearch)) {
     searchHistory.push(userSearch);
     let cityEl = $(`
-      <li>${userSearch}</li>
+      <li class="list-group-item bg-transparent text-light">${userSearch}</li>
     `);
     $("#searchHistory").append(cityEl);
   }
+
+  localStorage.setItem("userSearch", JSON.stringify(searchHistory));
+  console.log(searchHistory);
   queryContent.hidden = false;
   form.elements.query.value = "";
 });
-
-// Line 79
-// fiveDayResponse.data.daily[i].dt
