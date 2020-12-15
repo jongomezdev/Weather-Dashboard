@@ -116,7 +116,13 @@ form.addEventListener("submit", function (e) {
   }
 
   localStorage.setItem("userSearch", JSON.stringify(searchHistory));
-  console.log(searchHistory);
+  // console.log(searchHistory);
   queryContent.hidden = false;
   form.elements.query.value = "";
+});
+
+$(document).on("click", ".list-group-item", function () {
+  let cityLI = $(this).text();
+  currentWeather(cityLI);
+  console.log(cityLI);
 });
