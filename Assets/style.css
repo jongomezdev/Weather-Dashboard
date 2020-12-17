@@ -18,6 +18,10 @@ li.pointer {
   cursor: pointer;
 }
 
+li:hover {
+  background-color: #bc6ff1 !important;
+}
+
 .uviGreen {
   background-color: #3ea72d;
   display: inline;

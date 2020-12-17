@@ -105,7 +105,7 @@ form.addEventListener("submit", function (e) {
   if (!searchHistory.includes(userSearch)) {
     searchHistory.push(userSearch);
     let cityEl = $(`
-      <li class="list-group-item bg-transparent text-light pointer">${userSearch}</li>
+      <li class="list-group-item bg-transparent text-light text-center pointer">${userSearch}</li>
     `);
     $("#searchHistory").append(cityEl);
   }
