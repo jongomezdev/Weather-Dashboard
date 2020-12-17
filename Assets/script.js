@@ -2,6 +2,7 @@
 const form = document.querySelector("#searchForm");
 
 // Declare Variables
+const apiKey = "b17d60e77dffd2e53cb818dad9614dfb";
 const searchHistory = [];
 const today = luxon.DateTime.local().toLocaleString({
   weekday: "short",
@@ -12,13 +13,13 @@ const today = luxon.DateTime.local().toLocaleString({
 // City Search Api Call
 const currentWeather = async (userSearch) => {
   const res = await axios.get(
-    `http://api.openweathermap.org/data/2.5/weather?q=${userSearch}&units=imperial&appid=b17d60e77dffd2e53cb818dad9614dfb`
+    `http://api.openweathermap.org/data/2.5/weather?q=${userSearch}&units=imperial&appid=${apiKey}`
   );
   $("#queryContent").css("display", "block");
   $("#queryDetails").empty();
   const weatherData = res.data;
   const weatherIcon = weatherData.weather[0].icon;
-  const iconURL = `http://openweathermap.org/img/w/${weatherIcon}.png`;
+  const iconURL = `https://openweathermap.org/img/w/${weatherIcon}.png`;
   // Append Data to the document
   let cityEl = $(`
     <h2 id="cityName">
@@ -34,7 +35,7 @@ const currentWeather = async (userSearch) => {
   //UV Index API call
   axios
     .get(
-      `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=b17d60e77dffd2e53cb818dad9614dfb`
+      `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${apiKey}`
     )
     .then(function (uviResponse) {
       let uvIndex = uviResponse.data.value;
@@ -64,7 +65,7 @@ const currentWeather = async (userSearch) => {
 function fiveDayForecast(lat, lon) {
   axios
     .get(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=current,minutely,hourly,alerts&appid=b17d60e77dffd2e53cb818dad9614dfb`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=current,minutely,hourly,alerts&appid=${apiKey}`
     )
     .then(function (fiveDayResponse) {
       $("#fiveDay").empty();
