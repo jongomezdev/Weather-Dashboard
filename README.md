@@ -47,7 +47,7 @@ My goal with this Web Application was to create a Mobile First seamless weather 
 ### Project Links:
 
 1. [GitHub Repo](https://github.com/jongomezdev/Weather-Dashboard)
-2. [Github Live](https://jongomezdev.github.io/Work-Day-Scheduler/)
+2. [Github Live](https://jongomezdev.github.io/Weather-Dashboard/)
 
 ---
 
