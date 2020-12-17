@@ -1,3 +1,4 @@
+// Grab DOM Element for input form
 const form = document.querySelector("#searchForm");
 
 // Declare Variables
@@ -18,7 +19,7 @@ const currentWeather = async (userSearch) => {
   const weatherData = res.data;
   const weatherIcon = weatherData.weather[0].icon;
   const iconURL = `http://openweathermap.org/img/w/${weatherIcon}.png`;
-
+  // Append Data to the document
   let cityEl = $(`
     <h2 id="cityName">
     ${weatherData.name}-${today} <img src="${iconURL}"/>
@@ -30,7 +31,7 @@ const currentWeather = async (userSearch) => {
   $("#queryDetails").append(cityEl);
   const lat = weatherData.coord.lat;
   const lon = weatherData.coord.lon;
-  //UV Index api call
+  //UV Index API call
   axios
     .get(
       `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=b17d60e77dffd2e53cb818dad9614dfb`
@@ -59,7 +60,7 @@ const currentWeather = async (userSearch) => {
     });
 };
 
-// 5 day forecast
+// 5 day forecast API call
 function fiveDayForecast(lat, lon) {
   axios
     .get(
@@ -117,7 +118,6 @@ form.addEventListener("submit", function (e) {
 $(document).on("click", ".list-group-item", function () {
   let cityLI = $(this).text();
   currentWeather(cityLI);
-  console.log(cityLI);
 });
 
 // Persist the last userSearch on reload
