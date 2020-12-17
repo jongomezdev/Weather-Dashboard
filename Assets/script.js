@@ -22,7 +22,7 @@ const currentWeather = async (userSearch) => {
   // Append Data to the document
   let cityEl = $(`
     <h2 id="cityName">
-    ${weatherData.name}-${today} <img src="${iconURL}"/>
+    ${weatherData.name} (${today}) <img src="${iconURL}"/>
     </h2>
     <p>Temperature: ${weatherData.main.temp} °F</p>
     <p>Humidity: ${weatherData.main.temp} %</p>
@@ -105,7 +105,7 @@ form.addEventListener("submit", function (e) {
   if (!searchHistory.includes(userSearch)) {
     searchHistory.push(userSearch);
     let cityEl = $(`
-      <li class="list-group-item bg-transparent text-light">${userSearch}</li>
+      <li class="list-group-item bg-transparent text-light pointer">${userSearch}</li>
     `);
     $("#searchHistory").append(cityEl);
   }
