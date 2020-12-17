@@ -13,7 +13,7 @@ const today = luxon.DateTime.local().toLocaleString({
 // City Search Api Call
 const currentWeather = async (userSearch) => {
   const res = await axios.get(
-    `http://api.openweathermap.org/data/2.5/weather?q=${userSearch}&units=imperial&appid=${apiKey}`
+    `https://api.openweathermap.org/data/2.5/weather?q=${userSearch}&units=imperial&appid=${apiKey}`
   );
   $("#queryContent").css("display", "block");
   $("#queryDetails").empty();
