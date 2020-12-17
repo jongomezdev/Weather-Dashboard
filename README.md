@@ -34,7 +34,7 @@ My goal with this Web Application was to create a Mobile First seamless weather 
 
 ### Clone the repository locally
 
-1. Clone the respository to your machine: git clone https://github.com/jongomezdev/Weather-Dashboard.git
+1. Clone the respository to your machine: `git clone https://github.com/jongomezdev/Weather-Dashboard.git`
 
 ---
 
