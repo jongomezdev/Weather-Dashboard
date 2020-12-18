@@ -36,6 +36,10 @@ li:hover {
   margin: 5px 0;
 }
 
+p {
+  font-size: 12px;
+}
+
 .uviGreen {
   background-color: #3ea72d;
   display: inline;
