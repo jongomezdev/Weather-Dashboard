@@ -80,6 +80,7 @@ function fiveDayForecast(lat, lon) {
           forecastInfo.date
         ).toLocaleString({ weekday: "short", month: "short", day: "2-digit" });
         let forecastIcon = `<img src="https://openweathermap.org/img/w/${forecastInfo.icon}.png" />`;
+        // Append the 5 day bootstrap cards
         forecastCard = $(`
           <div class="p-3">
             <div class="card text-light bg-transparent">

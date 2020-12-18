@@ -55,4 +55,4 @@ My goal with this Web Application was to create a Mobile First seamless weather 
 
 The following animation demonstrates the application functionality:
 
-![weather dashboard demo](Assets/Weather-Dashboard-Demo.gif)
+![weather dashboard demo](Assets/Weather-Dashboard.gif)
