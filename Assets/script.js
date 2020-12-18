@@ -82,7 +82,7 @@ function fiveDayForecast(lat, lon) {
         let forecastIcon = `<img src="https://openweathermap.org/img/w/${forecastInfo.icon}.png" />`;
         forecastCard = $(`
           <div class="p-3">
-            <div class="card bg-transparent text-light">
+            <div class="card text-light bg-transparent">
               <div class="card-body">
                 <p>${forecastDate}</p>
                 <p>${forecastIcon}</p> 
@@ -106,7 +106,7 @@ form.addEventListener("submit", function (e) {
   if (!searchHistory.includes(userSearch)) {
     searchHistory.push(userSearch);
     let cityEl = $(`
-      <li class="list-group-item bg-transparent text-light text-center pointer">${userSearch}</li>
+      <li class="list-group-item bg-transparent text-light text-center pointer history">${userSearch}</li>
     `);
     $("#searchHistory").append(cityEl);
   }

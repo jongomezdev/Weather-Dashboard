@@ -3,6 +3,16 @@
 body {
   background-image: linear-gradient(#000000, #52057b, #892cdc);
   font-family: "Lato", sans-serif;
+  min-height: 100vh;
+}
+
+.btn {
+  background: #b567a4;
+  color: #fff;
+}
+
+.btn:hover {
+  color: #e8e8e8;
 }
 
 h1 {
@@ -19,7 +29,11 @@ li.pointer {
 }
 
 li:hover {
-  background-color: #bc6ff1 !important;
+  background-color: rgb(19, 3, 34) !important;
+}
+
+.history {
+  margin: 5px 0;
 }
 
 .uviGreen {
